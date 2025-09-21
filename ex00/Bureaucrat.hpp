@@ -24,6 +24,8 @@ class Bureaucrat {
 		const std::string _name;
 	public:
 		Bureaucrat(const std::string& name, int grade);
+		Bureaucrat(const Bureaucrat& other);
+		Bureaucrat& operator=(const Bureaucrat& other);
 		~Bureaucrat();
 		//exceptions for too low and too high grades
 		// overload intersection << "<name>, bureaucrat grade <grade>"
@@ -33,6 +35,16 @@ class Bureaucrat {
 		// if it goes out of range bowth show same exception as the constrcutor
 		void incrementGrade(int inc);
 		void decrementGrade(int dec);
+};
+
+class GradeTooLowException : public std::exception {
+	public:
+		virtual const char* what() const throw();
+};
+
+class GradeTooHighException : public std::exception {
+	public:
+		virtual const char* what() const throw();
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);

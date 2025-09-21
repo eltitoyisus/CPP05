@@ -12,12 +12,12 @@
 
 #include "Form.hpp"
 
-Form::AForm() : _name("Default name"), _signGrade(150), _signExec(150) {}
+Form::Form() : _name("Default name"), _signGrade(150), _signExec(150) {}
 
-Form::AForm(const std::string name, const int signGrade, const int signExec)
+Form::Form(const std::string name, const int signGrade, const int signExec)
 : _name(name), _signed(false), _signGrade(signGrade), _signExec(signExec) {}
 
-Form::AForm(const Form& other)
+Form::Form(const Form& other)
 : _name(other._name), _signed(other._signed), _signGrade(other._signGrade), _signExec(other._signExec) {}
 
 Form& Form::operator=(const Form& other) {
@@ -56,4 +56,4 @@ std::ostream& operator<<(std::ostream& os, const Form& b) {
 	return (os);
 }
 
-Form::~AForm() {}
+Form::~Form() {}

@@ -21,11 +21,11 @@ class Bureaucrat;
 
 class Form {
 	public:
-		AForm();
-		AForm(const std::string name, const int _signGrade, const int _signExec);
-		AForm(const Form& other);
+		Form();
+		Form(const std::string name, const int _signGrade, const int _signExec);
+		Form(const Form& other);
 		Form& operator=(const Form& other);
-		~AForm();
+		~Form();
 		void beSigned(const Bureaucrat& b);
 
 		std::string getName() const;

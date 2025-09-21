@@ -24,30 +24,42 @@
 #include "RobotomyRequestForm.hpp"
 
 int main() {
-	try {
-		Bureaucrat b1("Alice", 5);
-		Bureaucrat b2("Bob", 45);
-		Bureaucrat b3("Charlie", 137);
+		try {
+			Bureaucrat b1("Alice", 5);
+			Bureaucrat b2("Bob", 45);
+			Bureaucrat b3("Charlie", 137);
 
-		ShrubberyCreationForm shrub("Home");
-		PresidentialPardonForm pardon("Criminal");
-		RobotomyRequestForm robot("Bender");
+			ShrubberyCreationForm shrub("Home");
+			PresidentialPardonForm pardon("Criminal");
+			RobotomyRequestForm robot("Bender");
 
-		std::cout << "\n--- Trying ShrubberyCreationForm ---\n";
-		b3.signAForm(shrub);
-		b3.executeForm(shrub);
+			std::cout << "\n==============================" << std::endl;
+			std::cout << "Bureaucrats:" << std::endl;
+			std::cout << b1 << std::endl;
+			std::cout << b2 << std::endl;
+			std::cout << b3 << std::endl;
+			std::cout << "==============================\n" << std::endl;
 
-		std::cout << "\n--- Trying RobotomyRequestForm ---\n";
-		b2.signAForm(robot);
-		b2.executeForm(robot);
+			std::cout << "Forms:" << std::endl;
+			std::cout << shrub << std::endl;
+			std::cout << pardon << std::endl;
+			std::cout << robot << std::endl;
+			std::cout << "==============================\n" << std::endl;
 
-		std::cout << "\n--- Trying PresidentialPardonForm ---\n";
-		b1.signAForm(pardon);
-		b1.executeForm(pardon);
+			Bureaucrat* bureaucrats[3] = {&b3, &b2, &b1};
+			AForm* forms[3] = {&shrub, &robot, &pardon};
+			std::string formNames[3] = {"ShrubberyCreationForm", "RobotomyRequestForm", "PresidentialPardonForm"};
 
-	} catch (std::exception &e) {
-		std::cerr << "Exception caught: " << e.what() << std::endl;
-	}
+			for (int i = 0; i < 3; ++i) {
+				std::cout << "\n--- " << bureaucrats[i]->getName() << " attempts to sign and execute " << formNames[i] << " ---" << std::endl;
+				bureaucrats[i]->signAForm(*forms[i]);
+				bureaucrats[i]->executeForm(*forms[i]);
+			}
 
-	return 0;
+		} catch (std::exception &e) {
+			std::cerr << "\n[ERROR] Exception caught: " << e.what() << std::endl;
+		}
+
+		std::cout << "\nProgram finished.\n" << std::endl;
+		return 0;
 }
